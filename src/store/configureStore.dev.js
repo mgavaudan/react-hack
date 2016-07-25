@@ -5,7 +5,7 @@ import { routerReducer } from 'react-router-redux';
 
 import fuelSavings from './fuelSavingsReducer';
 
-loggerMiddleware = createLogger()
+const loggerMiddleware = createLogger();
 
 export default function configureStore(initialState) {
 
