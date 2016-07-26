@@ -8,7 +8,7 @@ export const ERROR_DATA = 'ERROR_DATA';
 export function fetchData(email, password){
 	return (dispatch) => {
 		dispatch(getData(email));
-		fetch(`\${email}`)
+		fetch(`localhost:3000\doctors\${email}`)
 		.then(function(response) {
 			return response.json();
 		}).then(function(json) {
