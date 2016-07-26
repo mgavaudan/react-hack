@@ -14,11 +14,15 @@ export class LoginContainer extends Component {
 
 	render(){
 		const { user, getData } = this.props;
-		if( user && user.isAuthenticated ){
-			return <Dashboard/>;
+		if ( user && user.isAuthenticated ){
+			return (
+				<Dashboard/>
+			);
 		}
-		else{
-			return <LoginPage getData={getData}/>;
+		else {
+			return (
+				<LoginPage getData={getData}/>
+			);
 		}
 	}
 

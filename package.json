@@ -29,14 +29,18 @@
   "author": "Matthieu Gavaudan",
   "license": "MIT",
   "dependencies": {
+    "es6-promise": "3.2.1",
+    "isomorphic-fetch": "2.2.1",
+    "material-ui": "0.15.2",
     "object-assign": "4.1.0",
-    "react": "15.2.0",
+    "react": "15.2.1",
     "react-dom": "15.2.0",
     "react-redux": "4.4.5",
     "react-router": "2.5.2",
     "react-router-redux": "4.0.5",
     "react-tap-event-plugin": "1.0.0",
-    "redux": "3.5.2"
+    "redux": "3.5.2",
+    "redux-thunk": "2.1.0"
   },
   "devDependencies": {
     "autoprefixer": "6.3.7",
@@ -74,6 +78,7 @@
     "prompt": "1.0.0",
     "react-addons-test-utils": "15.2.0",
     "redux-immutable-state-invariant": "1.2.3",
+    "redux-logger": "2.6.1",
     "replace": "0.3.0",
     "rimraf": "2.5.3",
     "sass-loader": "4.0.0",
@@ -86,9 +91,15 @@
     "webpack-hot-middleware": "2.12.1",
     "webpack-md5-hash": "0.0.5"
   },
-  "keywords": [],
+  "keywords": [
+    "React",
+    "Boilerplate",
+    "Redux",
+    "API",
+    "Hackathon"
+  ],
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/mgavaudan/react-hack"
   }
 }

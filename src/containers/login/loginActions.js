@@ -17,7 +17,7 @@ export function fetchData(email, password){
 		}).catch(function(ex) {
 			console.log('Login failed', ex);
 			dispatch(errorData(email, ex));
-		})
+		});
 		return Promise.resolve();
 	};
 } 
