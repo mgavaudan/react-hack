@@ -2,7 +2,7 @@
 // This boilerplate file is likely to be the same for each project that uses Redux.
 // With Redux, the actual stores are in /reducers.
 
-import {createStore, compose} from 'redux';
+import { createStore, compose } from 'redux';
 import rootReducer from '../containers';
 
 export default function configureStore(initialState) {

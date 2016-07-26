@@ -1,18 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import Dashboard from '../../components/Dashboard';
 
-const NotFoundPage = () => {
-  return (
-  	<MuiThemeProvider>
-	    <div>
-	      <h1>
-	        Welcome!
-	      </h1>
-	      <Link to="/"> Go back to homepage </Link>
-	    </div>
-		</MuiThemeProvider>
-  );
+export class DashboardContainer extends Component {
+	render(){
+		const { patients } = this.props;
+		return <Dashboard patients={patients}/>;
+	}
+}
+
+DashboardContainer.propTypes = {
+	patients: PropTypes.object.isRequired
 };
 
-export default NotFoundPage;
+const mapStateToProps = (state) => {
+	const patients  = state.data;
+	return{
+		patients
+	};
+};
+
+export default connect(mapStateToProps)(DashboardContainer);
