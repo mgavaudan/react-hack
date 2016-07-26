@@ -11,7 +11,7 @@ const LoginPage = () => {
 			<h1>Login</h1>
 			<h2>Get Started</h2>
 			<ol>
-				<li><Link to="fuel-savings"><FlatButton label="Fuel Savings"/></Link></li>
+				<li><Link to="notfound"><FlatButton label="Not Found Page"/></Link></li>
 				<li>Holla Holla Dolla Dolla</li>
 			</ol>
 		</div>
