@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchData } from './loginActions';
+import { loginUser, logoutUser } from './loginActions';
 import LoginPage from '../../components/LoginPage';
 import Dashboard from '../../components/Dashboard';
 

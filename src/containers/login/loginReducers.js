@@ -1,27 +1,34 @@
-import { GET_DATA, RECEIVE_DATA, ERROR_DATA } from './loginActions';
+import { LOGIN_REQUEST, LOGIN_SUCCESS,
+		LOGIN_FAILURE, LOGOUT_SUCCESS } from './loginActions';
 
-const data = (state = { isFetching: false, isAuthenticated: false, items: {} }, action) => {
+const login = ( state = { isFetching: false, isAuthenticated: localStorage.getItem('id_token') ? true : false }, action) => {
 	switch (action.type) {
-	case GET_DATA:
+	case LOGIN_REQUEST:
 		return Object.assign({}, state, {
-			isFetching: true
+			isFetching: true,
+			isAuthenticated: false,
+			user: action.creds
 		});
-	case RECEIVE_DATA:
+	case LOGIN_SUCCESS:
 		return Object.assign({}, state, {
 			isFetching: false,
-			items: action.data,
 			isAuthenticated: true,
-			lastUpdated: action.receivedAt
+			errorMessage: ''
 		});
-	case ERROR_DATA:
+	case LOGIN_FAILURE:
 		return Object.assign({}, state, {
 			isFetching: false,
-			items: action.data,
-			lastUpdated: action.receivedAt
+			isAuthenticated: false,
+			errorMessage: action.message
+		});
+	case LOGOUT_SUCCESS:
+		return Object.assign({}, state, {
+			isFetching: true,
+			isAuthenticated: false
 		});
 	default:
 		return state;
 	}
 };
 
-export default data;
+export default login;

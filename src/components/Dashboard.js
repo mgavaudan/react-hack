@@ -1,18 +1,52 @@
-import React from 'react';
-import { Link } from 'react-router';
-import '../styles/about-page.css';
+import React, { Component, PropTypes } from 'react';
 
-// Since this component is simple and static, there's no parent container for it.
-const Dashboard = () => {
-	return (
-		<div>
-			<h2 className="alt-header"> Dashboard </h2>
-			<p>This page comes up after logging in.</p>
-			<p>
-				<Link to="/badlink">Click this bad link</Link> to see the 404 page.
-			</p>
-		</div>
-	);
-};
+export default class Dashboard extends Component {
 
-export default Dashboard;
+	render() {
+		const { onQuoteClick, onSecretQuoteClick, isAuthenticated, quote, isSecretQuote } = this.props;
+
+		return (
+			<div>
+				<div className='col-sm-3'>
+					<button onClick={onQuoteClick} className="btn btn-primary">
+					Get Quote
+					</button>
+				</div>
+
+				{ isAuthenticated &&
+					<div className='col-sm-3'>
+						<button onClick={onSecretQuoteClick} className="btn btn-warning">
+						Get Secret Quote
+						</button>
+					</div>
+				}
+
+				<div className='col-sm-6'>
+					{ quote && !isSecretQuote &&
+						<div>
+							<blockquote>{quote}</blockquote>
+						</div>
+					}
+
+					{ quote && isAuthenticated && isSecretQuote &&
+						<div>
+							<span className="label label-danger">Secret Quote</span>
+							<hr/>
+							<blockquote>
+							{quote}
+							</blockquote>
+						</div>
+					}
+				</div>
+			</div>
+		);
+	}
+}
+
+Dashboard.propTypes = {
+	onQuoteClick: PropTypes.func.isRequired,
+	onSecretQuoteClick: PropTypes.func.isRequired,
+	isAuthenticated: PropTypes.bool.isRequired,
+	quote: PropTypes.string,
+	isSecretQuote: PropTypes.bool.isRequired
+}

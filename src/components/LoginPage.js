@@ -1,22 +1,49 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
 
 
-const LoginPage = () => {
-	return (
-		<MuiThemeProvider>	
-		<div>
-			<h1>Login</h1>
-			<h2>Get Started</h2>
-			<ol>
-				<li><Link to="notfound"><FlatButton label="Not Found Page"/></Link></li>
-				<li>Holla Holla Dolla Dolla</li>
-			</ol>
-		</div>
-		</MuiThemeProvider>
-	);
+export default class LoginPage extends Component {
+
+	handleClick (event) {
+		const username = this.refs.username;
+		const password = this.refs.password;
+		const creds = { username: username.value.trim(), password: password.value.trim() };
+		this.props.onLoginClick(creds);
+	}   
+
+	render() {
+
+		const { errorMessage } = this.props;
+
+		return (
+			<MuiThemeProvider>	
+			<div>
+				<h1>Login</h1>
+				<h2>Get Started</h2>
+				<ol>
+					<li><Link to="notfound"><FlatButton label="Not Found Page"/></Link></li>
+					<li>Holla Holla Dolla Dolla</li>
+				</ol>
+
+				<input type='text' ref='username' className="form-control" placeholder='Username'/>
+				<input type='password' ref='password' className="form-control" placeholder='Password'/>
+				<button onClick={(event) => this.handleClick(event)} className="btn btn-primary">
+					Login
+				</button>
+
+        {errorMessage &&
+          <p>{errorMessage}</p>
+        }
+			</div>
+			</MuiThemeProvider>
+		);
+	}
+	
 };
 
-export default LoginPage;
+LoginPage.propTypes = {
+	onLoginClick: PropTypes.func.isRequired,
+	errorMessage: PropTypes.string
+}
