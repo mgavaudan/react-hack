@@ -3,34 +3,36 @@ import React, { Component, PropTypes } from 'react';
 export default class Dashboard extends Component {
 
 	render() {
-		const { onQuoteClick, onSecretQuoteClick, isAuthenticated, quote, isSecretQuote } = this.props;
+		const { onQuoteClick, onSecretQuoteClick, quote, isSecretQuote, onLogoutClick } = this.props;
 
 		return (
 			<div>
-				<div className='col-sm-3'>
-					<button onClick={onQuoteClick} className="btn btn-primary">
+				<button onClick={() => onLogoutClick()} >
+					Logout
+				</button>
+
+				<div >
+					<button onClick={onQuoteClick} >
 					Get Quote
 					</button>
 				</div>
 
-				{ isAuthenticated &&
-					<div className='col-sm-3'>
-						<button onClick={onSecretQuoteClick} className="btn btn-warning">
-						Get Secret Quote
-						</button>
-					</div>
-				}
+				<div >
+					<button onClick={onSecretQuoteClick}>
+					Get Secret Quote
+					</button>
+				</div>
 
-				<div className='col-sm-6'>
-					{ quote && !isSecretQuote &&
+				<div >
+					{quote && !isSecretQuote &&
 						<div>
 							<blockquote>{quote}</blockquote>
 						</div>
 					}
 
-					{ quote && isAuthenticated && isSecretQuote &&
+					{quote && isSecretQuote &&
 						<div>
-							<span className="label label-danger">Secret Quote</span>
+							<span>Secret Quote</span>
 							<hr/>
 							<blockquote>
 							{quote}
@@ -45,8 +47,8 @@ export default class Dashboard extends Component {
 
 Dashboard.propTypes = {
 	onQuoteClick: PropTypes.func.isRequired,
+	onLogoutClick: PropTypes.func.isRequired,
 	onSecretQuoteClick: PropTypes.func.isRequired,
-	isAuthenticated: PropTypes.bool.isRequired,
 	quote: PropTypes.string,
 	isSecretQuote: PropTypes.bool.isRequired
-}
+};

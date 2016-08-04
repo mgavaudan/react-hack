@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
@@ -6,12 +6,18 @@ import FlatButton from 'material-ui/FlatButton';
 
 export default class LoginPage extends Component {
 
-	handleClick (event) {
+	constructor(props){
+		super(props);
+		this.state = { username: '', password: '' };
+		this.handleClick = this.handleClick.bind(this);
+	}
+
+	handleClick () {
 		const username = this.refs.username;
 		const password = this.refs.password;
 		const creds = { username: username.value.trim(), password: password.value.trim() };
 		this.props.onLoginClick(creds);
-	}   
+	}
 
 	render() {
 
@@ -23,15 +29,14 @@ export default class LoginPage extends Component {
 				<h1>Login</h1>
 				<h2>Get Started</h2>
 				<ol>
-					<li><Link to="notfound"><FlatButton label="Not Found Page"/></Link></li>
+					<li><Link to='notfound'><FlatButton label='Not Found Page'/></Link></li>
 					<li>Holla Holla Dolla Dolla</li>
 				</ol>
 
-				<input type='text' ref='username' className="form-control" placeholder='Username'/>
-				<input type='password' ref='password' className="form-control" placeholder='Password'/>
-				<button onClick={(event) => this.handleClick(event)} className="btn btn-primary">
-					Login
-				</button>
+				<input type='text' ref='username' placeholder='Username'/>
+				<input type='password' ref='password' placeholder='Password'/>
+				<FlatButton label='Login' backgroundColor='green' onClick={() => this.handleClick()}/>
+
 
         {errorMessage &&
           <p>{errorMessage}</p>
@@ -41,9 +46,9 @@ export default class LoginPage extends Component {
 		);
 	}
 	
-};
+}
 
 LoginPage.propTypes = {
 	onLoginClick: PropTypes.func.isRequired,
 	errorMessage: PropTypes.string
-}
+};

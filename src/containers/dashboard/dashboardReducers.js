@@ -1,7 +1,6 @@
 import {
-  LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS,
-  QUOTE_REQUEST, QUOTE_SUCCESS, QUOTE_FAILURE
-} from './dashboardActions'
+	QUOTE_REQUEST, QUOTE_SUCCESS, QUOTE_FAILURE
+} from './dashboardActions';
 
 const quotes = (state = { isFetching: false, quote: '', authenticated: false }, action) => {
 	switch (action.type) {

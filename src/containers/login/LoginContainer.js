@@ -3,25 +3,22 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { loginUser, logoutUser } from './loginActions';
 import LoginPage from '../../components/LoginPage';
-import Dashboard from '../../components/Dashboard';
+import DashboardContainer from '../dashboard/DashboardContainer';
 
 
 export class LoginContainer extends Component {
 
-	constructor(props){
-		super(props);
-	}
-
 	render(){
-		const { user, getData } = this.props;
-		if ( user && user.isAuthenticated ){
+		const { isAuthenticated, errorMessage, onLogoutClick, onLoginClick } = this.props;
+
+		if ( isAuthenticated ){
 			return (
-				<Dashboard/>
+				<DashboardContainer onLogoutClick={onLogoutClick}/>
 			);
 		}
 		else {
 			return (
-				<LoginPage getData={getData}/>
+				<LoginPage errorMessage={errorMessage} onLoginClick={onLoginClick}/>
 			);
 		}
 	}
@@ -29,24 +26,29 @@ export class LoginContainer extends Component {
 }
 
 LoginContainer.propTypes = {
-	user: PropTypes.object.isRequired,
-	dispatch: PropTypes.func.isRequired,
-	getData: PropTypes.func.isRequired
+  isAuthenticated: PropTypes.bool.isRequired,
+  onLoginClick: PropTypes.func.isRequired,
+  onLogoutClick: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string
 };
 
 
 const mapStateToProps = (state) => {
-	const user = state.data;
-	return{
-		user
+	const { isAuthenticated, errorMessage } = state.login;
+	return {
+		isAuthenticated,
+		errorMessage
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return{
-		getData: bindActionCreators(fetchData, dispatch),
+		onLoginClick: bindActionCreators(loginUser, dispatch),
+		onLogoutClick: bindActionCreators(logoutUser, dispatch),
 		dispatch
 	};
 };
 
+
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
+

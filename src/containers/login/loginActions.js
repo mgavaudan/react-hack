@@ -8,6 +8,7 @@ export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 
+// eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpZCI6MiwiaWF0IjoxNDY5OTQ5NTkxLCJleHAiOjE0Njk5Njc1OTF9.LrLWUf22OyffGjT5vNGdwaFnzMuQWJq_6KEClxUHnUg
 
 
 //*****************************  LOGIN  *******************************//
@@ -26,7 +27,7 @@ function receiveLogin(user) {
 		type: LOGIN_SUCCESS,
 		isFetching: false,
 		isAuthenticated: true,
-		token: user.token
+		id_token: user.id_token
 	};
 }
 
@@ -44,14 +45,14 @@ export function loginUser(creds) {
 	let config = {
 		method: 'POST',
 		headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
-		body: `email=${creds.email}&password=${creds.password}`
+		body: `username=${creds.username}&password=${creds.password}`
 	};
 
 	return dispatch => {
 
 		dispatch(requestLogin(creds));
 
-		return fetch('http://localhost:8080/api/authenticate', config)
+		return fetch('http://localhost:3001/sessions/create', config)
 		.then(response =>
 			response.json().then(user => ({ user, response }))
 		).then(({ user, response }) =>  {
@@ -61,7 +62,7 @@ export function loginUser(creds) {
 				return Promise.reject(user);
 			// SUCCESS
 			} else {
-				localStorage.setItem('token', user.token);
+				localStorage.setItem('id_token', user.id_token);
 				dispatch(receiveLogin(user));
 			}
 		}).catch(err => console.log("Error: ", err));
@@ -93,7 +94,7 @@ function receiveLogout() {
 export function logoutUser() {
   return dispatch => {
     dispatch(requestLogout());
-    localStorage.removeItem('token');
+    localStorage.removeItem('id_token');
     dispatch(receiveLogout());
   };
 }

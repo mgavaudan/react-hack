@@ -8,9 +8,9 @@ import LoginContainer from './containers/login/LoginContainer'; // eslint-disabl
 import DashboardContainer from './containers/dashboard/DashboardContainer'; // eslint-disable-line import/no-named-as-default
 
 export default (
-  <Route path="/" component={App}>
+  <Route path='/' component={App}>
     <IndexRoute component={LoginContainer}/>
-    <Route path="welcome" component={DashboardContainer}/>
-    <Route path="*" component={NotFoundPage}/>
+    <Route path='welcome' component={DashboardContainer}/>
+    <Route path='*' component={NotFoundPage}/>
   </Route>
 );
