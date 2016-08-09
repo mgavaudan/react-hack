@@ -1,54 +1,34 @@
 import React, { Component, PropTypes } from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import FlatButton from 'material-ui/FlatButton';
+import {cyan500} from 'material-ui/styles/colors';
 
 export default class Dashboard extends Component {
 
 	render() {
-		const { onQuoteClick, onSecretQuoteClick, quote, isSecretQuote, onLogoutClick } = this.props;
+		const { onSecretQuoteClick, quotes, onLogoutClick } = this.props;
 
 		return (
+			<MuiThemeProvider>
 			<div>
-				<button onClick={() => onLogoutClick()} >
-					Logout
-				</button>
+				<FlatButton label='Logout' backgroundColor={cyan500} onClick={() => onLogoutClick()} />
+				<FlatButton label='Secret Quote' backgroundColor={cyan500} onClick={() => onSecretQuoteClick()} />
 
 				<div >
-					<button onClick={onQuoteClick} >
-					Get Quote
-					</button>
-				</div>
-
-				<div >
-					<button onClick={onSecretQuoteClick}>
-					Get Secret Quote
-					</button>
-				</div>
-
-				<div >
-					{quote && !isSecretQuote &&
-						<div>
-							<blockquote>{quote}</blockquote>
-						</div>
-					}
-
-					{quote && isSecretQuote &&
-						<div>
-							<span>Secret Quote</span>
-							<hr/>
-							<blockquote>
-							{quote}
-							</blockquote>
-						</div>
-					}
+				{quotes &&
+					<div>
+						<blockquote>{quotes}</blockquote>
+					</div>
+				}
 				</div>
 			</div>
+			</MuiThemeProvider>
 		);
 	}
 }
 
 Dashboard.propTypes = {
-	onQuoteClick: PropTypes.func.isRequired,
 	onLogoutClick: PropTypes.func.isRequired,
 	onSecretQuoteClick: PropTypes.func.isRequired,
-	quote: PropTypes.string,
-	isSecretQuote: PropTypes.bool.isRequired
+	quotes: PropTypes.string
 };

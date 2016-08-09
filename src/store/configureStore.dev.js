@@ -5,13 +5,14 @@ import rootReducer from '../containers';
 
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
+import api from '../middleware/api';
 
 export default function configureStore(initialState) {
 
 	const logger = createLogger();
 
 	const store = createStore(rootReducer, initialState, compose(
-		applyMiddleware(thunk, logger),
+		applyMiddleware(thunk, logger, api),
 		window.devToolsExtension ? window.devToolsExtension() : f => f // add support for Redux dev tools
 	));
 

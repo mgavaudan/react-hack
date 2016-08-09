@@ -3,7 +3,7 @@
 Some Features:
 
 1. **One command to get setup** - Type `npm run setup` to get project setup the first time you use it.
-2. **One command to get started** - Type `npm start` to start dev server.
+2. **One command to get started** - Type `npm start -s` to start dev server.
 3. **Rapid feedback** - Each time you hit save, changes hot reload and linting and automated tests run.
 4. **One command line to check** - All feedback is displayed on a single command line.
 5. **Redux** - Using Redux for ease of development & state management.

@@ -6,21 +6,20 @@ import Dashboard from '../../components/Dashboard';
 
 class DashboardContainer extends Component {
 
-	onComponentWillMount(){
+	componentWillMount(){
 		const { dispatch } = this.props;
-		dispatch(fetchQuote);
+		dispatch(fetchQuote());
 	}
 
 
 	render(){
-		const { quotes, onLogoutClick } = this.props;
-		return <Dashboard quotes={quotes} onLogoutClick={onLogoutClick}/>;
+		return <Dashboard {...this.props}/>;
 	}
 }
 
 DashboardContainer.propTypes = {
 	quotes: PropTypes.object.isRequired,
-	secretQuoteClick: PropTypes.func.isRequired,
+	onSecretQuoteClick: PropTypes.func.isRequired,
 	dispatch: PropTypes.func.isRequired,
 	onLogoutClick: PropTypes.func.isRequired
 };
@@ -34,7 +33,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return{
-		secretQuoteClick: bindActionCreators(fetchSecretQuote, dispatch),
+		onSecretQuoteClick: bindActionCreators(fetchSecretQuote, dispatch),
 		dispatch
 	};
 };

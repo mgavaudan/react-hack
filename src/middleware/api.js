@@ -1,9 +1,15 @@
+import fetch from 'isomorphic-fetch';
+
+export const CALL_API = Symbol('Call API');
+
 const BASE_URL = 'http://localhost:3001/api/';
+
 
 function callApi(endpoint, authenticated) {
 
 	let token = localStorage.getItem('id_token') || null;
 	let config = {};
+
 
 	if(authenticated) {
 		if(token) {
@@ -27,8 +33,6 @@ function callApi(endpoint, authenticated) {
 		}).catch(err => console.log(err));
 }
 
-export const CALL_API = Symbol('Call API');
-
 export default store => next => action => {
 
 	const callAPI = action[CALL_API];
@@ -42,8 +46,13 @@ export default store => next => action => {
 
 	const [ requestType, successType, errorType ] = types;
 
+	console.log("store: ");
 	console.log(store);
+	console.log("request types: ");
 	console.log(requestType);
+	console.log(successType);
+	console.log(errorType);
+
 
 	// Passing the authenticated boolean back in our data will let us distinguish between normal and secret quotes
 	return callApi(endpoint, authenticated).then(
