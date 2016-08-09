@@ -6,18 +6,18 @@ import {cyan500} from 'material-ui/styles/colors';
 export default class Dashboard extends Component {
 
 	render() {
-		const { onSecretQuoteClick, quotes, onLogoutClick } = this.props;
+		const { onSecretQuoteClick, data, onLogoutClick } = this.props;
 
 		return (
 			<MuiThemeProvider>
 			<div>
 				<FlatButton label='Logout' backgroundColor={cyan500} onClick={() => onLogoutClick()} />
-				<FlatButton label='Secret Quote' backgroundColor={cyan500} onClick={() => onSecretQuoteClick()} />
+				<FlatButton label='Secret Quote' backgroundColor={cyan500} onClick={() => onSecretQuoteClick('protected/random-quote', true)} />
 
 				<div >
-				{quotes &&
+				{data &&
 					<div>
-						<blockquote>{quotes}</blockquote>
+						<blockquote>{data.quotes}</blockquote>
 					</div>
 				}
 				</div>
@@ -30,5 +30,5 @@ export default class Dashboard extends Component {
 Dashboard.propTypes = {
 	onLogoutClick: PropTypes.func.isRequired,
 	onSecretQuoteClick: PropTypes.func.isRequired,
-	quotes: PropTypes.string
+	data: PropTypes.object
 };

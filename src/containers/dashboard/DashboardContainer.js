@@ -1,14 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchQuote, fetchSecretQuote } from './dashboardActions';
+import { callApi } from './dashboardActions';
 import Dashboard from '../../components/Dashboard';
 
 class DashboardContainer extends Component {
 
 	componentWillMount(){
 		const { dispatch } = this.props;
-		dispatch(fetchQuote());
+		dispatch(callApi('random-quote'));
 	}
 
 
@@ -18,22 +18,22 @@ class DashboardContainer extends Component {
 }
 
 DashboardContainer.propTypes = {
-	quotes: PropTypes.object.isRequired,
+	data: PropTypes.object.isRequired,
 	onSecretQuoteClick: PropTypes.func.isRequired,
 	dispatch: PropTypes.func.isRequired,
 	onLogoutClick: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
-	const { quotes }  = state;
+	const { data }  = state;
 	return{
-		quotes
+		data
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return{
-		onSecretQuoteClick: bindActionCreators(fetchSecretQuote, dispatch),
+		onSecretQuoteClick: bindActionCreators(callApi, dispatch),
 		dispatch
 	};
 };

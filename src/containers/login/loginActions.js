@@ -8,8 +8,6 @@ export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 
-// eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpZCI6MiwiaWF0IjoxNDY5OTQ5NTkxLCJleHAiOjE0Njk5Njc1OTF9.LrLWUf22OyffGjT5vNGdwaFnzMuQWJq_6KEClxUHnUg
-
 
 //*****************************  LOGIN  *******************************//
 
