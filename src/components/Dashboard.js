@@ -12,7 +12,7 @@ export default class Dashboard extends Component {
 			<MuiThemeProvider>
 			<div>
 				<FlatButton label='Logout' backgroundColor={cyan500} onClick={() => onLogoutClick()} />
-				<FlatButton label='Secret Quote' backgroundColor={cyan500} onClick={() => onSecretQuoteClick('protected/random-quote', true)} />
+				<FlatButton label='Secret Quote' backgroundColor={cyan500} onClick={() => onSecretQuoteClick('protected/doctor/doctor1@gmail.com', true)} />
 
 				<div >
 				{data &&

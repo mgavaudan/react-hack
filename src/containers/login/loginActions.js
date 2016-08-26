@@ -43,14 +43,14 @@ export function loginUser(creds) {
 	let config = {
 		method: 'POST',
 		headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
-		body: `username=${creds.username}&password=${creds.password}`
+		body: `email=${creds.email}&password=${creds.password}`
 	};
 
 	return dispatch => {
 
 		dispatch(requestLogin(creds));
 
-		return fetch('http://localhost:3001/sessions/create', config)
+		return fetch('http://localhost:6001/sessions/create', config)
 		.then(response =>
 			response.json().then(user => ({ user, response }))
 		).then(({ user, response }) =>  {

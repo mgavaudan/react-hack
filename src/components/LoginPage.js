@@ -16,9 +16,9 @@ export default class LoginPage extends Component {
 	}
 
 	handleClick () {
-		const user = this.refs.username.getValue().trim();
+		const user = this.refs.email.getValue().trim();
 		const pass = this.refs.password.getValue().trim();
-		const creds = { username: user, password: pass };
+		const creds = { email: user, password: pass };
 		this.props.onLoginClick(creds);
 	}
 
@@ -32,7 +32,7 @@ export default class LoginPage extends Component {
 				<h1>React Hack</h1>
 				<h2>Login</h2>
 
-				<TextField type='text' ref='username' hintText='Username'/>
+				<TextField type='text' ref='email' hintText='Email'/>
 				<br/><br/>
 				<TextField type='password' ref='password' hintText='Password'/>
 				<br/><br/>
