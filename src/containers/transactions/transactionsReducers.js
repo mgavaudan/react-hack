@@ -1,8 +1,8 @@
 import {
 	QUOTE_REQUEST, QUOTE_SUCCESS, QUOTE_FAILURE
-} from './dashboardActions';
+} from './transactionsActions';
 
-const data = (state = { isFetching: false, quotes: '', authenticated: false }, action) => {
+const transactions = (state = { isFetching: false, quotes: '', authenticated: false }, action) => {
 	switch (action.type) {
 	case QUOTE_REQUEST:
 		return Object.assign({}, state, {
@@ -23,4 +23,4 @@ const data = (state = { isFetching: false, quotes: '', authenticated: false }, a
 	}
 };
 
-export default data;
+export default transactions;

@@ -47,7 +47,7 @@ export function callApi(endpoint, authenticated) {
 			}
 		}
 
-		return fetch('http://localhost:3001/api/' + endpoint, config)
+		return fetch('http://localhost:6001/api/' + endpoint, config)
 			.then(response =>
 				response.text().then(text => ({ text, response }))
 			)

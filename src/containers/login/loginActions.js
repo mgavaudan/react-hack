@@ -1,5 +1,3 @@
-import fetch from 'isomorphic-fetch';
-
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
@@ -39,31 +37,17 @@ function loginError(message) {
 }
 
 export function loginUser(creds) {
-
-	let config = {
-		method: 'POST',
-		headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
-		body: `username=${creds.username}&password=${creds.password}`
-	};
+	let user = { id_token: "hey" };
 
 	return dispatch => {
-
 		dispatch(requestLogin(creds));
-
-		return fetch('http://localhost:3001/sessions/create', config)
-		.then(response =>
-			response.json().then(user => ({ user, response }))
-		).then(({ user, response }) =>  {
-			// ERROR
-			if (!response.ok) {
-				dispatch(loginError(user.message));
-				return Promise.reject(user);
-			// SUCCESS
-			} else {
-				localStorage.setItem('id_token', user.id_token);
-				dispatch(receiveLogin(user));
-			}
-		}).catch(err => console.log("Error: ", err));
+		if(creds.password != "test"){
+			dispatch(loginError("Incorrect Password"));
+		// SUCCESS
+		} else {
+			localStorage.setItem('id_token', user.id_token);
+			dispatch(receiveLogin(user));
+		}
 	};
 }
 

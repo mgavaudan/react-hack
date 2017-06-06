@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { callApi } from './dashboardActions';
+import { callApi } from './transactionsActions';
 import Dashboard from '../../components/Dashboard';
 
-class DashboardContainer extends Component {
+class TransactionsContainer extends Component {
 
 	componentWillMount(){
 		const { dispatch } = this.props;
@@ -17,17 +17,17 @@ class DashboardContainer extends Component {
 	}
 }
 
-DashboardContainer.propTypes = {
-	data: PropTypes.object.isRequired,
+TransactionsContainer.propTypes = {
+	transactions: PropTypes.object.isRequired,
 	onSecretQuoteClick: PropTypes.func.isRequired,
 	dispatch: PropTypes.func.isRequired,
 	onLogoutClick: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
-	const { data }  = state;
+	const { transactions }  = state;
 	return{
-		data
+		transactions
 	};
 };
 
@@ -38,4 +38,4 @@ const mapDispatchToProps = (dispatch) => {
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(TransactionsContainer);

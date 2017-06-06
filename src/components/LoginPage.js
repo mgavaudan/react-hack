@@ -1,9 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 // import { Link } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
+import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
-import {cyan500} from 'material-ui/styles/colors';
 import TextField from 'material-ui/TextField';
+
+import {fullWhite, lightGreen500} from 'material-ui/styles/colors';
+
+
 import '../styles/styles.scss';
 
 
@@ -16,9 +22,9 @@ export default class LoginPage extends Component {
 	}
 
 	handleClick () {
-		const user = this.refs.username.getValue().trim();
+		const user = this.refs.email.getValue().trim();
 		const pass = this.refs.password.getValue().trim();
-		const creds = { username: user, password: pass };
+		const creds = { email: user, password: pass };
 		this.props.onLoginClick(creds);
 	}
 
@@ -27,20 +33,26 @@ export default class LoginPage extends Component {
 		const { errorMessage } = this.props;
 
 		return (
-			<MuiThemeProvider>	
-			<div style={styles.main}>
-				<h1>React Hack</h1>
-				<h2>Login</h2>
-
-				<TextField type='text' ref='username' hintText='Username'/>
-				<br/><br/>
-				<TextField type='password' ref='password' hintText='Password'/>
-				<br/><br/>
-				<FlatButton label='Login' backgroundColor={cyan500} onClick={() => this.handleClick()}/>
-
-				{errorMessage &&
-					<p>{errorMessage}</p>
-				}
+			<MuiThemeProvider muiTheme={muiTheme}>	
+			<div className='parent'>
+				<h1>OLIVE FINANCE</h1>
+				<div className='nav'>
+					<FlatButton hoverColor={lightGreen500} label='Who are we?' onClick={() => console.log('we are')}/>
+					<FlatButton hoverColor={lightGreen500} label='Our Data' onClick={() => console.log('allo')}/>	
+					<FlatButton hoverColor={lightGreen500} label='Learn More' onClick={() => console.log('noone')}/>
+					<FlatButton hoverColor={lightGreen500} label='Contact Us' onClick={() => console.log('noone')}/>
+				</div>
+				<div className='login'>
+					<h3>Login</h3>
+					<TextField type='text' ref='email' hintText='Email' color={fullWhite}/>
+					<br/><br/>
+					<TextField type='password' ref='password' hintText='Password'/>
+					<br/><br/>
+					<RaisedButton backgroundColor={lightGreen500} label='Login' onClick={() => this.handleClick()}/>
+					{errorMessage &&
+						<p>{errorMessage}</p>
+					}
+				</div>
 			</div>
 			</MuiThemeProvider>
 		);
@@ -48,19 +60,11 @@ export default class LoginPage extends Component {
 	
 }
 
-const styles = {
-  main: {
-    textAlign: 'center',
-    paddingTop: 200,
-    position: 'absolute',
-    top:0,
-    bottom:0,
-    right:0,
-    left:0,
+const muiTheme = getMuiTheme({
+  palette: {
+    textColor: fullWhite,
   },
-};
-
-
+});
 
 LoginPage.propTypes = {
 	onLoginClick: PropTypes.func.isRequired,
